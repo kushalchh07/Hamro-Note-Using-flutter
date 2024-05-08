@@ -84,11 +84,12 @@ class _LoginState extends State<Login> {
                       child: TextField(
                         controller: emailController,
                         decoration: InputDecoration(
-                            border: InputBorder.none,
-                            label: Text(
-                              "Email",
-                              style: GoogleFonts.abel(),
-                            )),
+                            border: InputBorder.none, hintText: "Email"
+                            // label: Text(
+                            //   "Email",
+                            //   style: GoogleFonts.abel(),
+                            // ),
+                            ),
                       ),
                     ),
                   ),
@@ -108,10 +109,11 @@ class _LoginState extends State<Login> {
                         controller: passwordController,
                         obscureText: true,
                         decoration: InputDecoration(
-                            label: Text(
-                              "Password",
-                              style: GoogleFonts.abel(),
-                            ),
+                            hintText: "Password",
+                            // label: Text(
+                            //   "Password",
+                            //   style: GoogleFonts.abel(),
+                            // ),
                             border: InputBorder.none),
                       ),
                     ),
@@ -143,7 +145,7 @@ class _LoginState extends State<Login> {
                     onTap: () {},
                     child: Text(
                       "Forget Password?",
-                      style: GoogleFonts.abel(color: Colors.blue, fontSize: 14),
+                      style: GoogleFonts.abel(color: Colors.blue, fontSize: 18),
                     ),
                   ),
                   SizedBox(
@@ -155,7 +157,7 @@ class _LoginState extends State<Login> {
                       Text(
                         "Don't have an account? ",
                         style:
-                            GoogleFonts.abel(fontSize: 14, color: Colors.black),
+                            GoogleFonts.abel(fontSize: 18, color: Colors.black),
                       ),
                       GestureDetector(
                         onTap: () {
@@ -167,7 +169,7 @@ class _LoginState extends State<Login> {
                         child: Text(
                           "Sign Up",
                           style: GoogleFonts.abel(
-                              color: Colors.blue, fontSize: 14),
+                              color: Colors.blue, fontSize: 18),
                         ),
                       ),
                     ],

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hamro_note_app/loginOrsignup/login.dart';
 
 class SignUp extends StatefulWidget {
@@ -103,7 +104,9 @@ class _SignUpState extends State<SignUp> {
                       child: TextField(
                         controller: emailController,
                         decoration: InputDecoration(
-                            border: InputBorder.none, label: Text("Email")),
+                            border: InputBorder.none, hintText: "Email"
+                            //  label: Text("Email"),
+                            ),
                       ),
                     ),
                   ),
@@ -123,7 +126,9 @@ class _SignUpState extends State<SignUp> {
                         controller: passwordController,
                         obscureText: true,
                         decoration: InputDecoration(
-                            label: Text("Password"), border: InputBorder.none),
+                            hintText: "Password",
+                            // label: Text("Password"),
+                            border: InputBorder.none),
                       ),
                     ),
                   ),
@@ -143,7 +148,8 @@ class _SignUpState extends State<SignUp> {
                         controller: confpassController,
                         obscureText: true,
                         decoration: InputDecoration(
-                            label: Text("Confirm Password"),
+                            hintText: "Confirm Password",
+                            // label: Text("Confirm Password"),
                             border: InputBorder.none),
                       ),
                     ),
@@ -157,7 +163,8 @@ class _SignUpState extends State<SignUp> {
                     },
                     child: Text(
                       "SignUp",
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                      style:
+                          GoogleFonts.abel(color: Colors.white, fontSize: 16),
                     ),
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue,
@@ -173,7 +180,8 @@ class _SignUpState extends State<SignUp> {
                     children: [
                       Text(
                         "Already have an account? ",
-                        style: TextStyle(fontSize: 14, color: Colors.black),
+                        style:
+                            GoogleFonts.abel(fontSize: 18, color: Colors.black),
                       ),
                       GestureDetector(
                         onTap: () {
@@ -182,7 +190,8 @@ class _SignUpState extends State<SignUp> {
                         },
                         child: Text(
                           "Log in",
-                          style: TextStyle(color: Colors.blue, fontSize: 14),
+                          style: GoogleFonts.abel(
+                              color: Colors.blue, fontSize: 18),
                         ),
                       ),
                     ],
