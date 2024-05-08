@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hamro_note_app/loginOrsignup/signup.dart';
@@ -12,7 +13,19 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  void _login() {}
+
+  void _login() async {
+    var useremail = emailController.text.trim();
+    var userpassword = passwordController.text.trim();
+
+    if (useremail != "" && userpassword != "") {
+      try {
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+            email: useremail, password: userpassword);
+      } on FirebaseAuthException catch (e) {}
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;

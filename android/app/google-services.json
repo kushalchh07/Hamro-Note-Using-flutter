@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "433341645612",
+    "project_id": "hamro-note-3af45",
+    "storage_bucket": "hamro-note-3af45.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:433341645612:android:5fd841cafa528b7b7da289",
+        "android_client_info": {
+          "package_name": "com.example.hamro_note_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBk4iFHgSAy65aIojKTG4k8v4M3G7p5qr4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
