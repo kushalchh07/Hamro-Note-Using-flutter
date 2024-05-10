@@ -26,12 +26,21 @@ class _SignUpState extends State<SignUp> {
     var userPassword = passwordController.text.trim();
     var confirmPassword = confpassController.text.trim();
 
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+
     if (userEmail != '' && userPassword != '' && confirmPassword != '') {
       try {
         if (userPassword == confirmPassword) {
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
               email: userEmail, password: userPassword);
-
+          Navigator.pop(context);
           // .then((value) => {
           //       FirebaseFirestore.instance.collection('users').doc().set({
           //         "userEmail": userEmail,
@@ -41,11 +50,28 @@ class _SignUpState extends State<SignUp> {
           //       })
           //     });
         } else {
-          print('Error');
+          Navigator.pop(context);
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text("Password Donot Match!"),
+            ),
+          );
         }
-      } on FirebaseAuthException catch (e) {}
+      } on FirebaseAuthException catch (e) {
+        Navigator.pop(context);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(e.toString()),
+          ),
+        );
+      }
     } else {
-      //Display snacbar as please fill up all the textfield
+      Navigator.pop(context);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Please fill up all the areas!"),
+        ),
+      );
     }
   }
 

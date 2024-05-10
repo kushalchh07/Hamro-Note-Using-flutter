@@ -16,13 +16,26 @@ class _CreateNoteState extends State<CreateNote> {
   User? user = FirebaseAuth.instance.currentUser;
   void _onpressed() async {
     var note = noteController.text;
+
     if (note != '') {
       try {
-        await FirebaseFirestore.instance
-            .collection("notes")
-            .doc()
-            .set({"createdAt": DateTime.now(), "note": note, "userId": user});
-      } catch (e) {}
+        await FirebaseFirestore.instance.collection("notes").doc().set({
+          "createdAt": DateTime.now(),
+          "note": note,
+        });
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(e.toString()),
+          ),
+        );
+      }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Enter something to save."),
+        ),
+      );
     }
   }
 

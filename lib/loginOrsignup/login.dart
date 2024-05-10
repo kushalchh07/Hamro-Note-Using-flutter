@@ -18,11 +18,35 @@ class _LoginState extends State<Login> {
     var useremail = emailController.text.trim();
     var userpassword = passwordController.text.trim();
 
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+
     if (useremail != "" && userpassword != "") {
       try {
         await FirebaseAuth.instance.signInWithEmailAndPassword(
             email: useremail, password: userpassword);
-      } on FirebaseAuthException catch (e) {}
+        Navigator.pop(context);
+      } on FirebaseAuthException catch (e) {
+        Navigator.pop(context);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(e.toString()),
+          ),
+        );
+      }
+    } else {
+      Navigator.pop(context);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Please Fill up all the areas."),
+        ),
+      );
     }
   }
 
