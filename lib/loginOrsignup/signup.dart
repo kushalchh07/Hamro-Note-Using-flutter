@@ -1,3 +1,5 @@
+// ignore_for_file: sized_box_for_whitespace, prefer_const_constructors, sort_child_properties_last
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -77,7 +79,8 @@ class _SignUpState extends State<SignUp> {
                   ),
                   Text(
                     "SignUp",
-                    style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+                    style: GoogleFonts.abel(
+                        fontSize: 35, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
                     height: 5,
@@ -133,7 +136,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
                   SizedBox(
-                    height: 18,
+                    height: 10,
                   ),
                   Container(
                     width: 350,
