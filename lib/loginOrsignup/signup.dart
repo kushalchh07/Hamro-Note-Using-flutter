@@ -1,6 +1,5 @@
 // ignore_for_file: sized_box_for_whitespace, prefer_const_constructors, sort_child_properties_last
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -133,7 +132,9 @@ class _SignUpState extends State<SignUp> {
                       child: TextField(
                         controller: emailController,
                         decoration: InputDecoration(
-                            border: InputBorder.none, hintText: "Email"
+                            border: InputBorder.none,
+                            hintText: "Email",
+                            prefixIcon: Icon(Icons.email_outlined)
                             //  label: Text("Email"),
                             ),
                       ),
@@ -155,6 +156,7 @@ class _SignUpState extends State<SignUp> {
                         controller: passwordController,
                         obscureText: true,
                         decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.password_outlined),
                             hintText: "Password",
                             // label: Text("Password"),
                             border: InputBorder.none),
@@ -177,6 +179,7 @@ class _SignUpState extends State<SignUp> {
                         controller: confpassController,
                         obscureText: true,
                         decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.password_outlined),
                             hintText: "Confirm Password",
                             // label: Text("Confirm Password"),
                             border: InputBorder.none),

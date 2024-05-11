@@ -108,7 +108,9 @@ class _LoginState extends State<Login> {
                       child: TextField(
                         controller: emailController,
                         decoration: InputDecoration(
-                            border: InputBorder.none, hintText: "Email"
+                            prefixIcon: Icon(Icons.email_outlined),
+                            border: InputBorder.none,
+                            hintText: "Email"
                             // label: Text(
                             //   "Email",
                             //   style: GoogleFonts.abel(),
@@ -133,6 +135,7 @@ class _LoginState extends State<Login> {
                         controller: passwordController,
                         obscureText: true,
                         decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.password_outlined),
                             hintText: "Password",
                             // label: Text(
                             //   "Password",
