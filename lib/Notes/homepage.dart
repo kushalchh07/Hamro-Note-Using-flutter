@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hamro_note_app/Notes/createnote.dart';
@@ -27,10 +29,35 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         actions: [IconButton(onPressed: signout, icon: Icon(Icons.logout))],
       ),
-      body: Center(
-        child: Container(
-          child: Text("HomePage"),
-        ),
+      body: Container(
+        child: StreamBuilder(
+            stream: FirebaseFirestore.instance.collection("notes").snapshots(),
+            builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (snapshot.hasError) {
+                return Center(child: Text("Something Error."));
+              }
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(child: CupertinoActivityIndicator());
+              }
+              if (snapshot.data!.docs.isEmpty) {
+                return Center(child: Text("No Data available"));
+              }
+              if (snapshot.hasData) {
+                return ListView.builder(
+                    itemCount: snapshot.data!.docs.length,
+                    itemBuilder: (context, index) {
+                      var note = snapshot.data!.docs[index][
+                          'note']; // this will get the data from database and put it on note.
+
+                      return Card(
+                        child: ListTile(
+                          title: Text(note),
+                        ),
+                      );
+                    });
+              }
+              return Container();
+            }),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

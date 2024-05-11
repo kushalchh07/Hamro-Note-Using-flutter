@@ -16,6 +16,14 @@ class _CreateNoteState extends State<CreateNote> {
   User? user = FirebaseAuth.instance.currentUser;
   void _onpressed() async {
     var note = noteController.text;
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
 
     if (note != '') {
       try {
@@ -23,6 +31,8 @@ class _CreateNoteState extends State<CreateNote> {
           "createdAt": DateTime.now(),
           "note": note,
         });
+        Navigator.pop(context);
+        Navigator.pop(context);
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
