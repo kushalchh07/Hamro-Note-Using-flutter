@@ -26,6 +26,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 5,
         title: Text(
           "Hamro Notes",
           style: GoogleFonts.abel(fontWeight: FontWeight.bold),
@@ -33,54 +34,59 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         actions: [IconButton(onPressed: signout, icon: Icon(Icons.logout))],
       ),
-      body: Container(
-        child: StreamBuilder(
-            stream: FirebaseFirestore.instance.collection("notes").snapshots(),
-            builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              if (snapshot.hasError) {
-                return Center(child: Text("Something Error."));
-              }
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(child: CupertinoActivityIndicator());
-              }
-              if (snapshot.data!.docs.isEmpty) {
-                return Center(child: Text("No Data available"));
-              }
-              if (snapshot.hasData) {
-                return ListView.builder(
-                    itemCount: snapshot.data!.docs.length,
-                    itemBuilder: (context, index) {
-                      var note = snapshot.data!.docs[index]['note'];
-                      var docId = snapshot.data!.docs[index]
-                          .id; // this will get the data from database and put it on note.
+      body: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Container(
+          child: StreamBuilder(
+              stream:
+                  FirebaseFirestore.instance.collection("notes").snapshots(),
+              builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (snapshot.hasError) {
+                  return Center(child: Text("Something Error."));
+                }
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: CupertinoActivityIndicator());
+                }
+                if (snapshot.data!.docs.isEmpty) {
+                  return Center(child: Text("No Data available"));
+                }
+                if (snapshot.hasData) {
+                  return ListView.builder(
+                      itemCount: snapshot.data!.docs.length,
+                      itemBuilder: (context, index) {
+                        var note = snapshot.data!.docs[index]['note'];
+                        var docId = snapshot.data!.docs[index]
+                            .id; // this will get the data from database and put it on note.
 
-                      return GestureDetector(
-                        onTap: () {
-                          Get.to(() => EditNote(),
-                              arguments: {'note': note, 'docId': docId});
-                          print("Tapped");
-                        },
-                        child: Card(
-                          child: ListTile(
-                            title: Text(
-                              note,
-                              style: GoogleFonts.abel(),
+                        return GestureDetector(
+                          onTap: () {
+                            Get.to(() => EditNote(),
+                                arguments: {'note': note, 'docId': docId});
+                            print("Tapped");
+                          },
+                          child: Card(
+                            child: ListTile(
+                              title: Text(
+                                note,
+                                style: GoogleFonts.abel(
+                                    fontSize: 18, fontWeight: FontWeight.w700),
+                              ),
+                              trailing: IconButton(
+                                  onPressed: () async {
+                                    FirebaseFirestore.instance
+                                        .collection("notes")
+                                        .doc(docId)
+                                        .delete();
+                                  },
+                                  icon: Icon(Icons.delete_outline_outlined)),
                             ),
-                            trailing: IconButton(
-                                onPressed: () async {
-                                  FirebaseFirestore.instance
-                                      .collection("notes")
-                                      .doc(docId)
-                                      .delete();
-                                },
-                                icon: Icon(Icons.delete_outline_outlined)),
                           ),
-                        ),
-                      );
-                    });
-              }
-              return Container();
-            }),
+                        );
+                      });
+                }
+                return Container();
+              }),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
