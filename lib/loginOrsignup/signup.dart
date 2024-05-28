@@ -93,8 +93,8 @@ class _SignUpState extends State<SignUp> {
 
           Center(
             child: Container(
-              height: 450,
-              width: 400,
+              height: size.height * 0.60,
+              width: size.width,
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(8)),
               child: Column(
@@ -120,89 +120,35 @@ class _SignUpState extends State<SignUp> {
                   SizedBox(
                     height: 10,
                   ),
-                  Container(
-                    width: 350,
-                    height: 60,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: Colors.grey[200],
-                        border: Border.all(color: Colors.white)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextField(
-                        controller: emailController,
-                        decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: "Email",
-                            prefixIcon: Icon(Icons.email_outlined)
-                            //  label: Text("Email"),
-                            ),
-                      ),
-                    ),
-                  ),
+                  InputTextField(
+                      obscureText: false,
+                      tcontroller: emailController,
+                      hintText: "Email ",
+                      prefixIcon: Icon(Icons.email_outlined)),
                   SizedBox(
                     height: 10,
                   ),
-                  Container(
-                    width: 350,
-                    height: 60,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: Colors.grey[200],
-                        border: Border.all(color: Colors.white)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextField(
-                        controller: passwordController,
-                        obscureText: true,
-                        decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.password_outlined),
-                            hintText: "Password",
-                            // label: Text("Password"),
-                            border: InputBorder.none),
-                      ),
-                    ),
-                  ),
+                  InputTextField(
+                      obscureText: true,
+                      tcontroller: passwordController,
+                      hintText: " Password",
+                      prefixIcon: Icon(Icons.password_outlined)),
                   SizedBox(
                     height: 10,
                   ),
-                  Container(
-                    width: 350,
-                    height: 60,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: Colors.grey[200],
-                        border: Border.all(color: Colors.white)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextField(
-                        controller: confpassController,
-                        obscureText: true,
-                        decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.password_outlined),
-                            hintText: "Confirm Password",
-                            // label: Text("Confirm Password"),
-                            border: InputBorder.none),
-                      ),
-                    ),
-                  ),
+                  InputTextField(
+                      obscureText: true,
+                      tcontroller: confpassController,
+                      hintText: "Confirm Password",
+                      prefixIcon: Icon(Icons.password_outlined)),
                   SizedBox(
                     height: 20,
                   ),
-                  ElevatedButton(
+                  Button(
                     onPressed: () {
                       _signup();
                     },
-                    child: Text(
-                      "SignUp",
-                      style:
-                          GoogleFonts.abel(color: Colors.white, fontSize: 16),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
-                        fixedSize: Size(350, 40),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8))),
+                    name: "SignUp",
                   ),
                   SizedBox(
                     height: 50,
@@ -217,7 +163,7 @@ class _SignUpState extends State<SignUp> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(context,
+                          Navigator.pushReplacement(context,
                               MaterialPageRoute(builder: (context) => Login()));
                         },
                         child: Text(
@@ -234,6 +180,65 @@ class _SignUpState extends State<SignUp> {
           )
         ],
       ),
+    );
+  }
+}
+
+class InputTextField extends StatelessWidget {
+  final TextEditingController tcontroller;
+  final Icon prefixIcon;
+  final String hintText;
+  final bool obscureText;
+  const InputTextField(
+      {super.key,
+      required this.tcontroller,
+      required this.hintText,
+      required this.prefixIcon,
+      required this.obscureText});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 350,
+      height: 60,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          color: Colors.grey[200],
+          border: Border.all(color: Colors.white)),
+      child: Padding(
+        padding: EdgeInsets.all(8.0),
+        child: TextField(
+          controller: tcontroller,
+          obscureText: obscureText,
+          decoration: InputDecoration(
+              prefixIcon: prefixIcon,
+              hintText: hintText,
+              // label: Text("Confirm Password"),
+              border: InputBorder.none),
+        ),
+      ),
+    );
+  }
+}
+
+class Button extends StatelessWidget {
+  final VoidCallback onPressed;
+  final String name;
+  const Button({super.key, required this.onPressed, required this.name});
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      child: Text(
+        name,
+        style: GoogleFonts.abel(color: Colors.white, fontSize: 16),
+      ),
+      style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.blue,
+          fixedSize: Size(350, 40),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
     );
   }
 }

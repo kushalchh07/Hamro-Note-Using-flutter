@@ -69,8 +69,8 @@ class _LoginState extends State<Login> {
 
           Center(
             child: Container(
-              height: 450,
-              width: 400,
+              height: size.height * 0.60,
+              width: size.width,
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(15)),
               child: Column(
@@ -96,74 +96,25 @@ class _LoginState extends State<Login> {
                   SizedBox(
                     height: 10,
                   ),
-                  Container(
-                    width: 350,
-                    height: 60,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Colors.grey[200],
-                        border: Border.all(color: Colors.white)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextField(
-                        controller: emailController,
-                        decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.email_outlined),
-                            border: InputBorder.none,
-                            hintText: "Email"
-                            // label: Text(
-                            //   "Email",
-                            //   style: GoogleFonts.abel(),
-                            // ),
-                            ),
-                      ),
-                    ),
-                  ),
+                  InputTextField(
+                      obscureText: false,
+                      tcontroller: emailController,
+                      hintText: "Email",
+                      prefixIcon: Icon(Icons.email_outlined)),
                   SizedBox(
                     height: 10,
                   ),
-                  Container(
-                    width: 350,
-                    height: 60,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Colors.grey[200],
-                        border: Border.all(color: Colors.white)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextField(
-                        controller: passwordController,
-                        obscureText: true,
-                        decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.password_outlined),
-                            hintText: "Password",
-                            // label: Text(
-                            //   "Password",
-                            //   style: GoogleFonts.abel(),
-                            // ),
-                            border: InputBorder.none),
-                      ),
-                    ),
-                  ),
+                  InputTextField(
+                      obscureText: true,
+                      tcontroller: passwordController,
+                      hintText: "Password",
+                      prefixIcon: Icon(Icons.password_outlined)),
                   SizedBox(
                     height: 18,
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      _login();
-                    },
-                    child: Text(
-                      "Login",
-                      style: GoogleFonts.abel(
-                        color: Colors.white,
-                        fontSize: 18,
-                      ),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
-                        fixedSize: Size(350, 40),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8))),
+                  Button(
+                    onPressed: _login,
+                    name: "Login",
                   ),
                   SizedBox(
                     height: 20,

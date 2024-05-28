@@ -3,12 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
+
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hamro_note_app/Notes/createnote.dart';
-import 'package:hamro_note_app/Notes/editnote.dart';
+import 'package:hamro_note_app/Notes/editnote.dart'; 
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
