@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hamro_note_app/loginOrsignup/signup.dart';
+import 'package:hamro_note_app/features/loginOrsignup/signup.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});

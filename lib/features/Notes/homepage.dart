@@ -6,8 +6,8 @@ import 'package:get/get.dart';
 
 
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hamro_note_app/Notes/createnote.dart';
-import 'package:hamro_note_app/Notes/editnote.dart'; 
+import 'package:hamro_note_app/features/Notes/createnote.dart';
+import 'package:hamro_note_app/features/Notes/editnote.dart'; 
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:hamro_note_app/Notes/homepage.dart';
-import 'package:hamro_note_app/loginOrsignup/signup.dart';
+import 'package:hamro_note_app/features/Notes/homepage.dart';
+import 'package:hamro_note_app/features/loginOrsignup/signup.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
